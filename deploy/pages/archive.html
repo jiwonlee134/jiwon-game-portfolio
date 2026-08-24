@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050607">
+  <meta name="description" content="NEON REQUIEM 기밀 기록 보관소">
+  <title>ARCHIVE // NEON REQUIEM</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/archive.css">
+</head>
+<body class="archive-page">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="archive-scanlines" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header archive-header">
+    <a class="brand" href="../index.html" aria-label="Neon Requiem 홈으로">
+      <span class="brand-mark"></span>
+      <span>NR<span class="brand-slash">/</span>27</span>
+    </a>
+    <nav aria-label="메인 메뉴">
+      <a class="active" href="archive.html" aria-current="page">기록</a>
+      <a href="operative.html">요원</a>
+      <a href="../index.html#mission">미션</a>
+      <a href="game.html">게임</a>
+    </nav>
+    <a class="archive-exit" href="../index.html"><span>×</span> Close archive</a>
+  </header>
+
+  <main class="archive-main">
+    <aside class="archive-rail" aria-label="시스템 상태">
+      <span>CALIGO_NET</span>
+      <i></i>
+      <span>ARCHIVE NODE 04</span>
+    </aside>
+
+    <section class="archive-intro">
+      <div class="archive-intro-copy">
+        <p class="kicker">DIR://04 — CLASSIFIED ARCHIVE</p>
+        <h1 class="archive-title" data-text="MEMORY FILES">MEMORY<br><span>FILES</span></h1>
+        <p class="archive-lead">삭제된 기억은 사라지지 않는다.<br>도시의 가장 깊은 층에 파편으로 남을 뿐이다.</p>
+      </div>
+      <div class="archive-status">
+        <div class="status-ring"><span>73</span><small>%</small></div>
+        <div><small>DECRYPTION STATUS</small><strong>PARTIAL ACCESS</strong><em>4 OF 12 FILES RECOVERED</em></div>
+      </div>
+    </section>
+
+    <section class="archive-browser" aria-labelledby="archive-list-title">
+      <div class="browser-head">
+        <div>
+          <p class="kicker">RECOVERED DATA STREAM</p>
+          <h2 id="archive-list-title">기록 열람</h2>
+        </div>
+        <div class="archive-filters" role="group" aria-label="기록 필터">
+          <button class="active" type="button" data-filter="all">All <span>04</span></button>
+          <button type="button" data-filter="incident">Incident <span>02</span></button>
+          <button type="button" data-filter="memory">Memory <span>02</span></button>
+        </div>
+      </div>
+
+      <div class="archive-layout">
+        <div class="archive-list">
+          <button class="archive-item active" type="button" data-category="incident" data-record="0">
+            <span class="file-number">001</span>
+            <span class="file-main"><small>INCIDENT REPORT</small><strong>THE MIDNIGHT PURGE</strong></span>
+            <span class="file-date">2097.09.27</span>
+            <i>→</i>
+          </button>
+          <button class="archive-item" type="button" data-category="memory" data-record="1">
+            <span class="file-number">002</span>
+            <span class="file-main"><small>MEMORY FRAGMENT</small><strong>RAIN ON LEVEL NINE</strong></span>
+            <span class="file-date">2097.08.16</span>
+            <i>→</i>
+          </button>
+          <button class="archive-item" type="button" data-category="incident" data-record="2">
+            <span class="file-number">003</span>
+            <span class="file-main"><small>INCIDENT REPORT</small><strong>GHOST PROTOCOL</strong></span>
+            <span class="file-date">2097.06.03</span>
+            <i>→</i>
+          </button>
+          <button class="archive-item" type="button" data-category="memory" data-record="3">
+            <span class="file-number">004</span>
+            <span class="file-main"><small>MEMORY FRAGMENT</small><strong>THE RED DOOR</strong></span>
+            <span class="file-date">[REDACTED]</span>
+            <i>→</i>
+          </button>
+        </div>
+
+        <article class="record-view" aria-live="polite">
+          <div class="record-visual">
+            <div class="record-code">REC_001<br>09//27//97</div>
+            <span class="record-target" aria-hidden="true"></span>
+            <div class="record-caption">CAM_09 // SIGNAL DEGRADED</div>
+          </div>
+          <div class="record-content">
+            <div class="record-meta"><span id="recordType">INCIDENT REPORT</span><b>CLASSIFIED</b></div>
+            <h3 id="recordTitle">THE MIDNIGHT PURGE</h3>
+            <p id="recordText">23시 47분, 칼리고 중앙 기억 저장소에서 원인 불명의 동기화 오류가 발생했다. 12분 뒤 시민 4만 7천 명의 기억 기록이 동시에 소거되었다. 감시 영상에 남은 것은 붉은 문을 통과하는 한 명의 실루엣뿐이다.</p>
+            <div class="record-coordinates">
+              <span><small>SECTOR</small><strong>09-B</strong></span>
+              <span><small>THREAT</small><strong class="red">OMEGA</strong></span>
+              <span><small>INTEGRITY</small><strong id="recordIntegrity">84%</strong></span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="archive-footer">
+    <span><i></i> SYSTEM STATUS: STABLE</span>
+    <span>LATENCY: 12ms // UPLINK_OK</span>
+    <span>v.2.0.4.R</span>
+  </footer>
+
+  <script src="../assets/js/archive.js"></script>
+</body>
+</html>

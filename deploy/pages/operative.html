@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050607">
+  <meta name="description" content="NEON REQUIEM 요원 도ossier — THE WRAITH">
+  <title>THE WRAITH // NEON REQUIEM</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/operative.css">
+</head>
+<body class="dossier-page">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="dossier-scanlines" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header dossier-header">
+    <a class="brand" href="../index.html" aria-label="Neon Requiem 홈으로">
+      <span class="brand-mark"></span>
+      <span>NR<span class="brand-slash">/</span>27</span>
+    </a>
+    <nav aria-label="메인 메뉴">
+      <a href="archive.html">기록</a>
+      <a class="active" href="operative.html" aria-current="page">요원</a>
+      <a href="../index.html#mission">미션</a>
+      <a href="game.html">게임</a>
+    </nav>
+    <a class="dossier-close" href="../index.html"><span>×</span> Close dossier</a>
+  </header>
+
+  <main class="dossier-main">
+    <section class="dossier-shell" aria-labelledby="operative-name">
+      <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+
+      <aside class="portrait-panel">
+        <div class="portrait-image" aria-hidden="true"></div>
+        <div class="portrait-shade" aria-hidden="true"></div>
+        <div class="portrait-ui">
+          <div class="portrait-top">
+            <span>SUBJECT TRACKING // ACTIVE</span>
+            <b>ID: W-774</b>
+          </div>
+          <div class="face-reticle" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="portrait-bottom">
+            <span>BIOMETRIC MATCH</span><strong>00.03%</strong>
+            <div><i></i></div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="profile-panel">
+        <div class="profile-heading">
+          <p class="kicker">OPERATIVE DOSSIER // 01</p>
+          <h1 id="operative-name">THE<br><span>WRAITH</span></h1>
+          <div class="identity-row"><b>CLASSIFIED</b><span>Ghost Protocol</span><em>STATUS: ROGUE</em></div>
+        </div>
+
+        <div class="dossier-tabs" role="tablist" aria-label="요원 정보">
+          <button class="active" type="button" role="tab" aria-selected="true" data-tab="profile">Profile</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="augments">Augments</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="history">History</button>
+        </div>
+
+        <div class="tab-panel active" id="profile" role="tabpanel">
+          <p class="profile-summary">전직 기업 연합 집행관. 2097년 기억 소거 작전 이후 명령 체계에서 이탈했다. 신원 기록은 말소되었으며 마지막으로 섹터 09에서 포착되었다.</p>
+          <div class="stat-grid">
+            <div class="stat"><div><span>Combat effectiveness</span><b>88%</b></div><i style="--score:88%"><em></em></i></div>
+            <div class="stat"><div><span>Stealth index</span><b>96%</b></div><i style="--score:96%"><em></em></i></div>
+            <div class="stat"><div><span>Neural focus</span><b>72%</b></div><i style="--score:72%"><em></em></i></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="augments" role="tabpanel" hidden>
+          <div class="augment-list">
+            <article><span>01</span><div><h2>REFLEX // MK-IV</h2><p>신경 전달 지연을 0.08초까지 단축한다.</p></div><b>ONLINE</b></article>
+            <article><span>02</span><div><h2>OPTIC VEIL</h2><p>광학 감시망에서 생체 윤곽을 교란한다.</p></div><b>ONLINE</b></article>
+            <article><span>03</span><div><h2>MEMORY ANCHOR</h2><p>외부 기억 소거 신호로부터 핵심 기억을 격리한다.</p></div><b class="warning">UNSTABLE</b></article>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="history" role="tabpanel" hidden>
+          <ol class="history-list">
+            <li><time>2097.09.27</time><div><strong>MIDNIGHT PURGE</strong><p>명령 불복종. 중앙 기억 저장소 침투.</p></div></li>
+            <li><time>2097.09.18</time><div><strong>LAST CONTACT</strong><p>섹터 09 추적팀과의 교신 두절.</p></div></li>
+            <li><time>2097.06.03</time><div><strong>GHOST PROTOCOL</strong><p>요원 신원 및 복무 기록 전면 말소.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="profile-footer">
+          <p>AWAITING COMMAND INPUT // SYSTEM READY</p>
+          <button class="engage-button" id="engageButton" type="button"><span>ϟ</span> Engage protocol</button>
+        </div>
+      </section>
+    </section>
+
+    <div class="dossier-meta" aria-label="시스템 정보">
+      <span><i></i> TRACKING LINK: STABLE</span>
+      <span>CALIGO SECURITY NETWORK</span>
+      <span>CASE // W-774-OMEGA</span>
+    </div>
+  </main>
+
+  <div class="protocol-modal" id="protocolModal" role="dialog" aria-modal="true" aria-labelledby="protocolTitle" hidden>
+    <div class="protocol-card">
+      <button class="protocol-close" type="button" aria-label="닫기">×</button>
+      <p class="kicker">COMMAND AUTHORIZATION</p>
+      <div class="protocol-symbol">ϟ</div>
+      <h2 id="protocolTitle">PROTOCOL ENGAGED</h2>
+      <p>W-774 요원과 암호화 채널을 연결했습니다.</p>
+      <div class="protocol-progress"><i></i></div>
+      <small>UPLINK SECURE // AWAITING FIELD RESPONSE</small>
+    </div>
+  </div>
+
+  <script src="../assets/js/operative.js"></script>
+</body>
+</html>

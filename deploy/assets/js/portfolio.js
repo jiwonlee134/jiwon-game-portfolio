@@ -1,0 +1,11 @@
+const root=document.documentElement;const header=document.querySelector('.header');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+window.addEventListener('pointermove',e=>{root.style.setProperty('--parallax-x',`${(e.clientX/window.innerWidth-.5)*-18}px`);root.style.setProperty('--parallax-y',`${(e.clientY/window.innerHeight-.5)*-10}px`)});
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach((element,index)=>{element.style.transitionDelay=`${Math.min(index%4,2)*70}ms`;observer.observe(element)});
+
+const soundToggle=document.querySelector('#soundToggle');let audioContext,master,ambienceTimer,soundOn=false;
+function noirNote(frequency,when,duration,volume){const osc=audioContext.createOscillator(),gain=audioContext.createGain(),filter=audioContext.createBiquadFilter();osc.type='triangle';osc.frequency.setValueAtTime(frequency,when);filter.type='lowpass';filter.frequency.value=620;gain.gain.setValueAtTime(.0001,when);gain.gain.exponentialRampToValueAtTime(volume,when+.16);gain.gain.exponentialRampToValueAtTime(.0001,when+duration);osc.connect(filter).connect(gain).connect(master);osc.start(when);osc.stop(when+duration+.1)}
+function scheduleNoir(){if(!soundOn)return;const now=audioContext.currentTime,rootNote=[55,58.27,65.41,49][Math.floor(Math.random()*4)];noirNote(rootNote,now,4.8,.035);noirNote(rootNote*1.5,now+.55,2.5,.012);noirNote(rootNote*2,now+2.4,2.1,.009)}
+function startNoir(){audioContext||=new(window.AudioContext||window.webkitAudioContext)();audioContext.resume();master||=audioContext.createGain();master.gain.cancelScheduledValues(audioContext.currentTime);master.gain.setTargetAtTime(.8,audioContext.currentTime,.15);if(!master._connected){master.connect(audioContext.destination);master._connected=true}scheduleNoir();ambienceTimer=setInterval(scheduleNoir,4200)}
+soundToggle.addEventListener('click',()=>{soundOn=!soundOn;soundToggle.setAttribute('aria-pressed',String(soundOn));soundToggle.querySelector('span').textContent=soundOn?'SOUND ON':'SOUND OFF';if(soundOn)startNoir();else{clearInterval(ambienceTimer);if(master)master.gain.setTargetAtTime(.0001,audioContext.currentTime,.2)}});

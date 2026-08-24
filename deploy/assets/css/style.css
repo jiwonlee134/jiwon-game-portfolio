@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --black: #050607;
+  --ink: #090b0d;
+  --white: #edf2f2;
+  --muted: #8d999e;
+  --red: #ef1b2d;
+  --cyan: #61bed0;
+  --line: rgba(237, 242, 242, .16);
+  --mx: 50%;
+  --my: 50%;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: "Noto Sans KR", sans-serif;
+  overflow-x: hidden;
+}
+body.modal-open { overflow: hidden; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; font: inherit; }
+::selection { background: var(--red); color: white; }
+
+.noise {
+  position: fixed; inset: 0; z-index: 99; pointer-events: none; opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+.cursor-glow {
+  position: fixed; inset: 0; pointer-events: none; z-index: 8;
+  background: radial-gradient(440px circle at var(--mx) var(--my), rgba(63, 190, 211, .08), transparent 60%);
+}
+
+.site-header {
+  position: fixed; z-index: 30; top: 0; left: 0; width: 100%; height: 88px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4.5vw; border-bottom: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(to bottom, rgba(3,4,5,.72), transparent);
+  backdrop-filter: blur(3px);
+  text-transform: uppercase; font-family: "Barlow Condensed", sans-serif;
+}
+.brand { display: flex; gap: 12px; align-items: center; font-weight: 800; letter-spacing: .16em; font-size: 18px; }
+.brand-mark { width: 19px; height: 19px; border: 2px solid var(--red); transform: rotate(45deg); box-shadow: inset 0 0 8px var(--red), 0 0 12px rgba(239,27,45,.5); }
+.brand-slash { color: var(--red); padding: 0 2px; }
+nav { display: flex; align-items: center; gap: clamp(24px, 3.5vw, 62px); }
+nav a { position: relative; color: #bcc5c7; font-size: 13px; letter-spacing: .2em; }
+nav a::after { content: ""; position: absolute; left: 0; bottom: -10px; width: 0; height: 1px; background: var(--red); transition: width .25s; }
+nav a:hover::after { width: 100%; }
+.sound-toggle { border: 0; background: transparent; display: flex; gap: 12px; align-items: center; cursor: pointer; text-transform: uppercase; color: #aab3b6; font-size: 11px; letter-spacing: .16em; }
+.sound-bars { display: flex; align-items: end; gap: 2px; height: 12px; }
+.sound-bars i { display: block; width: 2px; height: 4px; background: var(--red); }
+.sound-bars i:nth-child(2) { height: 9px; }.sound-bars i:nth-child(3) { height: 6px; }
+.sound-toggle.active i { animation: equalize .7s ease-in-out infinite alternate; }
+.sound-toggle.active i:nth-child(2) { animation-delay: -.25s; }.sound-toggle.active i:nth-child(3) { animation-delay: -.45s; }
+
+.hero { position: relative; min-height: 100svh; overflow: hidden; display: flex; align-items: center; padding: 120px 6vw 80px; }
+.hero-image { position: absolute; inset: -3%; background: url("../images/neon-requiem-hero.png") center center / cover no-repeat; transform: translate3d(calc((var(--px, .5) - .5) * -18px), calc((var(--py, .5) - .5) * -12px), 0) scale(1.035); will-change: transform; }
+.hero-vignette { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,4,5,.9) 0%, rgba(3,4,5,.56) 31%, transparent 60%), linear-gradient(0deg, #050607 0%, transparent 24%, rgba(0,0,0,.22) 100%), radial-gradient(ellipse at 55% 48%, transparent 20%, rgba(0,0,0,.28) 90%); }
+.rain { position: absolute; inset: -40%; pointer-events: none; transform: rotate(9deg); background-image: repeating-linear-gradient(90deg, transparent 0, transparent 72px, rgba(173,227,235,.22) 73px, transparent 74px); animation: rain .48s linear infinite; opacity: .32; }
+.rain-front { background-image: repeating-linear-gradient(90deg, transparent 0, transparent 118px, rgba(205,239,244,.3) 119px, transparent 121px); animation-duration: .7s; opacity: .22; filter: blur(.5px); }
+.hero-content { position: relative; z-index: 3; width: min(650px, 52vw); margin-top: 3vh; }
+.eyebrow, .section-index, .kicker { margin: 0 0 20px; color: #aeb6b8; font: 500 11px/1 "Barlow Condensed", sans-serif; letter-spacing: .35em; text-transform: uppercase; }
+.eyebrow span, .section-index span { display: inline-block; color: var(--red); border: 1px solid rgba(239,27,45,.6); padding: 6px 9px; margin-right: 12px; letter-spacing: .05em; }
+h1, h2 { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.glitch { position: relative; margin: 0; font-size: clamp(74px, 10vw, 158px); line-height: .68; letter-spacing: -.045em; font-weight: 900; filter: drop-shadow(0 10px 40px rgba(0,0,0,.8)); }
+.glitch span { display: block; }
+.glitch .title-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(238,244,245,.84); letter-spacing: -.025em; }
+.glitch::before, .glitch::after { content: attr(data-text); white-space: nowrap; position: absolute; left: 0; top: 0; opacity: 0; overflow: hidden; color: var(--white); pointer-events: none; }
+.glitch.active::before { opacity: .7; color: var(--red); transform: translate(-7px, 3px); clip-path: inset(15% 0 62%); }
+.glitch.active::after { opacity: .6; color: var(--cyan); transform: translate(6px, -2px); clip-path: inset(68% 0 8%); }
+.tagline { margin: 31px 0 18px; font: italic 600 clamp(18px, 2vw, 28px)/1 "Barlow Condensed", sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+.tagline strong { color: var(--red); }
+.hero-copy { color: #aeb7ba; font-size: 13px; line-height: 1.9; font-weight: 300; }
+.hero-actions { display: flex; gap: 14px; margin-top: 34px; }
+.button { min-width: 174px; height: 54px; display: inline-flex; justify-content: center; align-items: center; gap: 13px; padding: 0 24px; border: 1px solid var(--line); background: rgba(4,5,6,.3); backdrop-filter: blur(8px); cursor: pointer; text-transform: uppercase; font: 600 12px/1 "Barlow Condensed", sans-serif; letter-spacing: .17em; transition: transform .25s, background .25s, border-color .25s, box-shadow .25s; }
+.button:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.5); }
+.button-primary { border-color: var(--red); background: var(--red); box-shadow: 0 10px 35px rgba(239,27,45,.23); }
+.button-primary:hover { background: #ff2639; box-shadow: 0 12px 50px rgba(239,27,45,.38); }
+.play-icon { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid white; }
+.hero-meta { position: absolute; z-index: 4; right: 4.5vw; bottom: 6vh; display: flex; gap: 42px; font: 600 13px/1 "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .12em; }
+.hero-meta span { display: flex; flex-direction: column; gap: 8px; }
+.hero-meta small { color: #687479; font-size: 9px; letter-spacing: .2em; }
+.hero-meta b { font-weight: 600; color: var(--red); }
+.scroll-cue { position: absolute; z-index: 4; left: 50%; bottom: 28px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: #697276; font: 500 8px/1 "Barlow Condensed", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
+.scroll-cue i { width: 1px; height: 32px; background: linear-gradient(var(--red) 50%, rgba(255,255,255,.15) 50%); background-size: 100% 200%; animation: scrollLine 1.8s ease-in-out infinite; }
+
+.section { position: relative; min-height: 100vh; padding: 110px 7vw; overflow: hidden; }
+.story { background: #07090a; display: flex; flex-direction: column; justify-content: center; }
+.section-index { position: absolute; top: 72px; left: 7vw; }
+.story-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 8vw; align-items: end; max-width: 1240px; margin: auto; width: 100%; }
+.kicker { color: var(--red); margin-bottom: 22px; }
+.story h2, .mission h2 { margin: 0; font-size: clamp(64px, 8.2vw, 130px); line-height: .86; letter-spacing: -.035em; }
+.story h2 em { color: transparent; -webkit-text-stroke: 1px #748187; font-style: normal; }
+.story-copy { max-width: 470px; padding-bottom: 10px; }
+.story-copy p { color: #778287; font-size: 14px; line-height: 2; }
+.story-copy .lead { color: #d3d9da; font-size: 18px; line-height: 1.7; margin-bottom: 24px; }
+.story-copy strong { color: var(--red); }
+.data-line { display: grid; grid-template-columns: 110px 90px 1fr; gap: 20px; align-items: center; margin-top: 25px; text-transform: uppercase; font: 500 11px/1 "Barlow Condensed", sans-serif; letter-spacing: .12em; color: #707b80; }
+.data-line strong { color: #d8dfe0; font-size: 14px; }.data-line strong.red { color: var(--red); }
+.data-line i { height: 1px; background: linear-gradient(90deg, #364045, transparent); }
+.marquee { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 15px 0; color: #293034; font: 800 20px/1 "Barlow Condensed", sans-serif; letter-spacing: .18em; white-space: nowrap; }
+.marquee div { width: max-content; animation: marquee 25s linear infinite; }
+
+.operative { min-height: 105vh; display: flex; align-items: center; background: radial-gradient(circle at 71% 46%, rgba(28,84,95,.14), transparent 30%), linear-gradient(110deg, #050607 40%, #0c1114); }
+.operative::before { content: ""; position: absolute; inset: 0; opacity: .1; background: repeating-linear-gradient(90deg, transparent 0, transparent calc(10% - 1px), #9bb6bd 10%); }
+.operative-panel { position: relative; width: min(1160px, 100%); min-height: 610px; margin: auto; border: 1px solid var(--line); display: grid; grid-template-columns: 1fr .7fr; align-items: center; padding: clamp(40px, 7vw, 100px); background: linear-gradient(115deg, rgba(5,7,8,.94), rgba(10,16,19,.7)), url("../images/neon-requiem-hero.png") 72% center / cover; box-shadow: 0 40px 100px #000; }
+.operative-panel::after { content: "SUBJECT IDENTIFIED  //  BIOMETRIC MATCH 00.03%"; position: absolute; top: 22px; right: 28px; color: #5d6c71; font: 500 8px/1 "Barlow Condensed", sans-serif; letter-spacing: .22em; }
+.operative-copy { position: relative; z-index: 2; max-width: 430px; }
+.operative h2 { margin: 0 0 35px; font-size: clamp(78px, 10vw, 142px); line-height: .69; letter-spacing: -.04em; }
+.operative h2 span { color: transparent; -webkit-text-stroke: 1px var(--red); text-shadow: 0 0 35px rgba(239,27,45,.14); }
+.operative-copy > p:last-child { max-width: 350px; color: #7e8a8e; font-size: 13px; line-height: 1.9; }
+.stats { position: relative; z-index: 2; align-self: end; padding-bottom: 20px; }
+.stats div { display: grid; grid-template-columns: 70px minmax(110px, 200px) 25px; gap: 14px; align-items: center; margin-top: 17px; color: #8d999e; text-transform: uppercase; font: 500 10px/1 "Barlow Condensed", sans-serif; letter-spacing: .15em; }
+.stats i { position: relative; height: 2px; background: #293136; }
+.stats i::after { content: ""; position: absolute; inset: 0; width: var(--value); background: var(--red); box-shadow: 0 0 8px var(--red); transform: scaleX(0); transform-origin: left; transition: transform 1.2s .4s cubic-bezier(.2,.8,.2,1); }
+.operative-panel.visible .stats i::after { transform: scaleX(1); }
+.status-stamp { position: absolute; right: 25px; bottom: 28px; border: 2px solid rgba(239,27,45,.55); color: rgba(239,27,45,.7); padding: 10px 16px; transform: rotate(-6deg); text-align: center; text-transform: uppercase; font: 600 10px/1.1 "Barlow Condensed", sans-serif; letter-spacing: .14em; }
+.status-stamp strong { font-size: 22px; }
+.target-reticle { position: absolute; right: 18%; top: 27%; width: 170px; height: 170px; border: 1px solid rgba(97,190,208,.25); border-radius: 50%; }
+.target-reticle::before, .target-reticle::after { content: ""; position: absolute; background: rgba(97,190,208,.28); }
+.target-reticle::before { width: 130%; height: 1px; left: -15%; top: 50%; }.target-reticle::after { height: 130%; width: 1px; top: -15%; left: 50%; }
+
+.mission { min-height: 100vh; display: grid; place-items: center; text-align: center; background: radial-gradient(circle at 50% 38%, rgba(239,27,45,.18), transparent 24%), linear-gradient(rgba(4,5,6,.75), #050607), url("../images/neon-requiem-hero.png") center 72% / cover; }
+.mission::before { content: ""; position: absolute; top: 0; left: 50%; width: 1px; height: 80px; background: linear-gradient(transparent, var(--red)); }
+.mission-inner { position: relative; z-index: 2; }
+.mission h2 span { color: var(--red); text-shadow: 0 0 45px rgba(239,27,45,.35); }
+.mission-inner > p:not(.kicker) { color: #8a9599; font-size: 13px; line-height: 1.9; margin: 28px 0 34px; }
+.button.large { min-width: 220px; }
+.mission small { display: block; margin-top: 90px; color: #3d4548; font: 500 8px/1 "Barlow Condensed", sans-serif; letter-spacing: .2em; }
+
+.reveal { opacity: 0; transform: translateY(35px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.trailer-modal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(0,0,0,.86); backdrop-filter: blur(12px); }
+.trailer-modal[hidden] { display: none; }
+.modal-card { position: relative; width: min(620px, 100%); padding: 45px; border: 1px solid rgba(239,27,45,.4); background: #080a0b; box-shadow: 0 0 100px rgba(239,27,45,.12); text-align: center; }
+.modal-close { position: absolute; top: 12px; right: 16px; border: 0; background: none; color: #6f797c; font-size: 30px; cursor: pointer; }
+.modal-card h2 { margin: 0 0 24px; font-size: 56px; letter-spacing: -.02em; }
+.modal-card > p:last-child { color: #7d898d; font-size: 12px; line-height: 1.8; }
+.signal-screen { position: relative; height: 190px; display: grid; place-items: center; margin: 24px 0; background: repeating-linear-gradient(0deg, #090d0f 0, #090d0f 2px, #0e1518 3px, #0e1518 4px); overflow: hidden; color: var(--red); font: 600 11px/1 "Barlow Condensed", sans-serif; letter-spacing: .3em; }
+.signal-screen span { position: absolute; width: 1px; height: 70%; left: 50%; background: var(--red); box-shadow: 0 0 20px var(--red); animation: signal 2s ease-in-out infinite; }
+
+@keyframes rain { to { transform: rotate(9deg) translateY(74px); } }
+@keyframes scrollLine { 0% { background-position: 0 100%; } 100% { background-position: 0 -100%; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes equalize { to { height: 12px; } }
+@keyframes signal { 50% { width: 80%; height: 1px; } }
+
+@media (max-width: 800px) {
+  .site-header { height: 68px; padding: 0 22px; }.site-header nav { display: none; }.sound-label { display: none; }
+  .hero { align-items: flex-end; padding: 100px 24px 110px; }
+  .hero-image { inset: -2% -60%; background-position: 62% center; }
+  .hero-vignette { background: linear-gradient(0deg, #050607 4%, rgba(3,4,5,.7) 52%, rgba(0,0,0,.25) 100%), linear-gradient(90deg, rgba(0,0,0,.75), transparent); }
+  .hero-content { width: 100%; margin: 0; }.glitch { font-size: clamp(64px, 22vw, 100px); }.tagline { margin-top: 25px; }.hero-copy br { display: none; }
+  .hero-meta { display: none; }.scroll-cue { left: auto; right: 20px; transform: none; }.scroll-cue span { display: none; }
+  .hero-actions { flex-wrap: wrap; }.button { min-width: 155px; flex: 1; padding: 0 12px; }
+  .section { padding: 105px 24px; }.section-index { left: 24px; top: 45px; }
+  .story-grid { grid-template-columns: 1fr; gap: 50px; }.story h2, .mission h2 { font-size: clamp(57px, 18vw, 88px); }.data-line { grid-template-columns: 95px 75px 1fr; gap: 8px; }
+  .operative-panel { grid-template-columns: 1fr; min-height: 660px; padding: 55px 28px 38px; background-position: 64% center; }.operative-panel::after { display: none; }
+  .operative-copy { align-self: end; }.operative h2 { font-size: 90px; }.stats { align-self: end; }.stats div { grid-template-columns: 58px 1fr 22px; }.target-reticle { right: 16%; top: 11%; width: 120px; height: 120px; }
+  .status-stamp { top: 20px; right: 18px; bottom: auto; }.mission small { margin-top: 60px; }.modal-card { padding: 45px 20px 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

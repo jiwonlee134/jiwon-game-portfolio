@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010"><meta name="description" content="AI와 함께 게임을 기획하고 완성한 게임 개발자 이지원의 포트폴리오">
+  <title>이지원 — Game Developer Portfolio</title><link rel="stylesheet" href="assets/css/portfolio.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="header">
+    <a class="logo" href="#top" aria-label="이지원 포트폴리오 홈"><span>J.</span>LEE</a>
+    <nav aria-label="주요 메뉴"><a href="#about">소개</a><a href="#project">프로젝트</a><a href="#process">과정</a><a href="#learned">배운 점</a></nav>
+    <div class="header-actions"><button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false"><i></i><span>SOUND OFF</span></button><a class="play-link" href="pages/game.html">PLAY GAME <span>↗</span></a></div>
+  </header>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-art" aria-hidden="true"></div><div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="overline"><span>PORTFOLIO 2026</span> GAME DEVELOPMENT</p>
+        <h1><span>상상을</span><br>플레이로<br><em>만듭니다.</em></h1>
+        <p class="hero-intro">AI와 대화하며 아이디어를 설계하고,<br>직접 테스트하며 끝까지 완성하는 게임 개발자</p>
+        <div class="hero-name"><i></i><strong>이지원</strong><span>LEE JI WON</span></div>
+      </div>
+      <div class="hero-side"><span>01 / 07</span><p>AI × VIBE CODING<br>× GAME DESIGN</p></div>
+      <a class="scroll" href="#about"><span>SCROLL TO EXPLORE</span><i></i></a>
+    </section>
+
+    <section class="intro section" id="about">
+      <div class="section-label reveal"><b>01</b><span>ABOUT ME</span></div>
+      <div class="intro-grid">
+        <h2 class="reveal">코드를 받는 사람보다,<br><em>답을 찾아가는 사람.</em></h2>
+        <div class="intro-body reveal">
+          <p class="lead">AI는 빠른 도구지만, 게임을 완성하는 판단은 개발자의 몫이라고 믿습니다.</p>
+          <p>아이디어를 기능으로 나누고, 실행 결과를 관찰하고, 오류의 원인을 설명하며 개선합니다. 기획·구현·테스트·수정의 순환 속에서 플레이할 수 있는 결과물을 만듭니다.</p>
+          <dl><div><dt>ROLE</dt><dd>Game Planner<br>Vibe Coder</dd></div><div><dt>TOOLS</dt><dd>AI Tools<br>HTML · CSS · JS</dd></div><div><dt>FOCUS</dt><dd>Playable<br>Experience</dd></div></dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="project section" id="project">
+      <div class="project-head"><div class="section-label light reveal"><b>02</b><span>FEATURED PROJECT</span></div><p class="project-year reveal">2026<br>PERSONAL PROJECT</p></div>
+      <div class="project-title reveal"><p>Browser Action Game</p><h2>NEON<br><span>REQUIEM</span></h2></div>
+      <div class="project-visual reveal"><img src="assets/images/neon-requiem-hero.png" alt="비 내리는 네온 도시를 바라보는 게임 주인공"><div class="visual-index">PROJECT / 001</div><a class="round-play" href="pages/game.html" aria-label="NEON REQUIEM 게임 플레이"><span>PLAY<br>NOW</span><i>↗</i></a></div>
+      <div class="project-summary reveal">
+        <p class="lead">90초 동안 추적 드론을 제거하고 자정까지 살아남는 브라우저 액션 게임.</p>
+        <p>누구나 바로 이해할 수 있는 이동과 조준, 점수 시스템을 중심으로 짧지만 반복해서 도전하고 싶은 플레이 흐름을 설계했습니다.</p>
+        <div class="tags"><span>GAME DESIGN</span><span>INTERACTION</span><span>DEBUGGING</span><span>WEB GAME</span></div>
+      </div>
+    </section>
+
+    <section class="flow section" aria-labelledby="flow-title">
+      <div class="section-label reveal"><b>03</b><span>GAME FLOW</span></div>
+      <div class="flow-heading reveal"><h2 id="flow-title">단순하고 명확한<br><em>플레이의 리듬</em></h2><p>처음 보는 사람도 바로 시작하고,<br>결과를 확인한 뒤 다시 도전하도록.</p></div>
+      <ol class="flow-list"><li class="reveal"><b>01</b><span>START</span><strong>게임 시작</strong><i>→</i></li><li class="reveal"><b>02</b><span>CONTROL</span><strong>캐릭터 조작</strong><i>→</i></li><li class="reveal"><b>03</b><span>PLAY</span><strong>목표 달성</strong><i>→</i></li><li class="reveal"><b>04</b><span>RESULT</span><strong>점수 확인</strong><i>↻</i></li></ol>
+    </section>
+
+    <section class="process section" id="process">
+      <div class="section-label light reveal"><b>04</b><span>MY PROCESS</span></div>
+      <div class="process-heading reveal"><p>VIBE CODING WORKFLOW</p><h2>AI와 함께,<br><span>하지만 주도적으로.</span></h2></div>
+      <div class="process-list">
+        <article class="reveal"><b>01</b><div><p>PLAN</p><h3>게임 기획</h3></div><p>장르와 플레이 방식을 정하고 이동, 점수, 시작과 종료 등 필요한 기능을 작은 단위로 나눕니다.</p></article>
+        <article class="reveal"><b>02</b><div><p>BUILD</p><h3>기능 구현</h3></div><p>원하는 동작과 조건을 자연어로 구체화하고, AI가 제안한 코드를 목적에 맞게 선택·수정합니다.</p></article>
+        <article class="reveal"><b>03</b><div><p>TEST</p><h3>실행과 검증</h3></div><p>기능을 직접 플레이하며 의도대로 작동하는지 확인하고, 조작감과 난이도까지 함께 살핍니다.</p></article>
+        <article class="reveal"><b>04</b><div><p>REFINE</p><h3>수정과 개선</h3></div><p>발견한 문제를 재현하고 원인을 좁혀 수정합니다. 다시 실행하며 완성도를 단계적으로 높입니다.</p></article>
+      </div>
+    </section>
+
+    <section class="debug section">
+      <div class="section-label reveal"><b>05</b><span>PROBLEM SOLVING</span></div>
+      <div class="debug-grid"><div class="debug-copy reveal"><p class="eyebrow">DEBUGGING IS A CONVERSATION</p><h2>오류를 설명하는 힘이<br><em>해결의 시작.</em></h2><p>“안 돼요”에서 멈추지 않습니다. 어떤 상황에서 무엇을 기대했고 실제로 어떤 결과가 나왔는지 비교합니다. 문제를 정확한 언어로 바꾸면 AI와의 협업도 더 정확해집니다.</p></div>
+      <ol class="debug-loop reveal"><li><b>01</b><span>문제 발견</span><small>실행 중 오류 확인</small></li><li><b>02</b><span>원인 확인</span><small>코드와 결과 비교</small></li><li><b>03</b><span>구체적 질문</span><small>상황과 목표 설명</small></li><li><b>04</b><span>수정 · 재실행</span><small>해결 여부 검증</small></li></ol></div>
+    </section>
+
+    <section class="learned section" id="learned">
+      <div class="section-label light reveal"><b>06</b><span>WHAT I LEARNED</span></div>
+      <blockquote class="reveal">“AI가 코드를 작성해도,<br><em>개발자는 필요하다.</em>”</blockquote>
+      <div class="lessons"><article class="reveal"><b>01</b><h3>판단</h3><p>생성된 코드가 게임의 목적에 맞는지 결정하는 것은 개발자의 역할입니다.</p></article><article class="reveal"><b>02</b><h3>검증</h3><p>직접 실행하고 플레이해야 예상과 실제 동작의 차이를 발견할 수 있습니다.</p></article><article class="reveal"><b>03</b><h3>개선</h3><p>제안을 그대로 쓰지 않고 조작감과 경험에 맞게 고치는 과정에서 게임이 완성됩니다.</p></article></div>
+    </section>
+
+    <section class="cta"><div class="cta-art" aria-hidden="true"></div><div class="cta-inner reveal"><p>07 / PLAY THE RESULT</p><h2>읽는 포트폴리오를 넘어,<br><span>직접 플레이해 보세요.</span></h2><a href="pages/game.html">게임 시작하기 <i>↗</i></a></div></section>
+  </main>
+  <footer><a class="logo" href="#top"><span>J.</span>LEE</a><p>GAME DEVELOPER PORTFOLIO<br>DESIGNED &amp; BUILT WITH AI</p><p>© 2026 LEE JI WON<br>ALL RIGHTS RESERVED.</p><a class="to-top" href="#top">BACK TO TOP ↑</a></footer>
+  <script src="assets/js/portfolio.js"></script>
+</body>
+</html>
