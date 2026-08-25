@@ -1,0 +1,22 @@
+{
+  "name": "이지원 게임 개발 포트폴리오",
+  "short_name": "J.LEE",
+  "description": "AI와 함께 기획하고 완성한 이지원의 게임 개발 포트폴리오",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050607",
+  "theme_color": "#050607",
+  "icons": [
+    {
+      "src": "/assets/images/jlee-icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/jlee-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
