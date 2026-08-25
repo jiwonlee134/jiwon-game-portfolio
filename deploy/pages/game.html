@@ -1,108 +1,53 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#050607">
-  <meta name="description" content="NEON REQUIEM: Midnight Run — 브라우저 네온 느와르 액션 게임">
-  <title>MIDNIGHT RUN // NEON REQUIEM</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#040607"><meta name="description" content="SECTOR NINE: BREACH — 브라우저 1인칭 느와르 슈팅 게임">
+  <title>SECTOR NINE: BREACH // 이지원 포트폴리오</title>
   <link rel="stylesheet" href="../assets/css/game.css">
 </head>
-<body class="game-page">
-  <div class="noise" aria-hidden="true"></div>
+<body>
+  <canvas id="game" aria-label="SECTOR NINE 1인칭 슈팅 게임"></canvas>
+  <div class="grain" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div><div class="damage" id="damage" aria-hidden="true"></div>
 
-  <header class="site-header game-header">
-    <a class="brand" href="../index.html" aria-label="Neon Requiem 홈으로">
-      <span class="brand-mark"></span>
-      <span>NR<span class="brand-slash">/</span>27</span>
-    </a>
-    <nav aria-label="메인 메뉴">
-      <a href="archive.html">기록</a>
-      <a href="operative.html">요원</a>
-      <a href="../index.html#project">프로젝트</a>
-      <a class="active" href="game.html" aria-current="page">게임</a>
-    </nav>
-    <div class="game-header-actions">
-      <button id="audioButton" class="hud-button" type="button" aria-pressed="false">Audio // off</button>
-      <a class="game-exit" href="../index.html"><span>×</span> Exit</a>
-    </div>
+  <header class="topbar">
+    <a class="brand" href="../index.html"><i></i><b>J.LEE</b><span>SECTOR NINE // BREACH</span></a>
+    <div class="mission-state"><span id="stateDot"></span><b id="stateLabel">AWAITING DEPLOYMENT</b></div>
+    <div class="top-actions"><button id="audio" type="button" aria-pressed="false">AUDIO // OFF</button><a href="../index.html">× EXIT</a></div>
   </header>
 
-  <main class="game-shell">
-    <canvas id="gameCanvas" aria-label="NEON REQUIEM 생존 슈팅 게임"></canvas>
-    <div class="scanlines" aria-hidden="true"></div>
-    <div class="edge-vignette" aria-hidden="true"></div>
-
-    <section class="game-hud" aria-label="게임 상태">
-      <div class="hud-top-left">
-        <p>OPERATIVE // W-774</p>
-        <div class="health-row"><span>VITAL</span><i><b id="healthBar"></b></i><strong id="healthText">100</strong></div>
-        <div class="heat-row"><span>HEAT</span><i><b id="heatBar"></b></i><strong id="heatText">0%</strong></div>
-        <div class="ammo-row"><span>AMMO</span><i id="ammoState">READY</i><strong><b id="ammoText">12</b> / <em id="reserveText">72</em></strong></div>
-      </div>
-      <div class="hud-center">
-        <small>TIME TO MIDNIGHT</small>
-        <strong id="timerText">01:30</strong>
-        <span id="waveText">WAVE 01</span>
-      </div>
-      <div class="hud-top-right">
-        <p>CALIGO // SECTOR 09</p>
-        <div><span>SCORE</span><strong id="scoreText">000000</strong></div>
-        <div><span>COMBO</span><strong id="comboText">×1</strong></div>
-      </div>
-      <div class="objective"><i></i><span id="objectiveText">OBJECTIVE: SURVIVE UNTIL MIDNIGHT</span></div>
-      <div class="dash-status" id="dashStatus"><span>SPACE</span> PHASE DASH <i></i></div>
-    </section>
-
-    <div class="crosshair" id="crosshair" aria-hidden="true"><i></i><i></i></div>
-
-    <section class="game-overlay visible" id="startOverlay" aria-labelledby="gameTitle">
-      <div class="overlay-card">
-        <p class="kicker">PLAYABLE PROTOCOL // 09</p>
-        <h1 id="gameTitle">MIDNIGHT<br><span>RUN</span></h1>
-        <p class="game-intro">90초 동안 추적 드론을 제거하고 자정까지 살아남아라.<br>탄약과 반동을 통제하고, 포위되면 위상 대시로 거리를 확보하라.</p>
-        <div class="control-grid">
-          <div><span>W A S D</span><small>이동</small></div>
-          <div><span>MOUSE</span><small>조준 · 사격</small></div>
-          <div><span>R</span><small>재장전</small></div>
-          <div><span>SPACE</span><small>위상 대시</small></div>
-          <div><span>ESC</span><small>일시정지</small></div>
-        </div>
-        <button class="game-start" id="startButton" type="button"><span>ϟ</span> Engage protocol</button>
-        <small class="mobile-hint">모바일: 왼쪽 터치 이동 · 오른쪽 터치 조준/사격</small>
-      </div>
-    </section>
-
-    <section class="game-overlay" id="pauseOverlay" aria-labelledby="pauseTitle">
-      <div class="overlay-card compact">
-        <p class="kicker">SYSTEM INTERRUPT</p>
-        <h2 id="pauseTitle">PAUSED</h2>
-        <button class="game-start" id="resumeButton" type="button">Resume mission</button>
-        <a href="../index.html">ABORT // RETURN TO CITY</a>
-      </div>
-    </section>
-
-    <section class="game-overlay" id="resultOverlay" aria-labelledby="resultTitle">
-      <div class="overlay-card result-card">
-        <p class="kicker" id="resultLabel">PROTOCOL TERMINATED</p>
-        <h2 id="resultTitle">SIGNAL<br><span>LOST</span></h2>
-        <div class="result-stats">
-          <div><small>FINAL SCORE</small><strong id="finalScore">000000</strong></div>
-          <div><small>HOSTILES ERASED</small><strong id="finalKills">00</strong></div>
-          <div><small>MAX COMBO</small><strong id="finalCombo">×1</strong></div>
-        </div>
-        <button class="game-start" id="restartButton" type="button">Re-enter the city</button>
-      </div>
-    </section>
-
-    <div class="mobile-controls" aria-hidden="true">
-      <div class="touch-zone move-zone" id="moveZone"><i id="moveStick"></i></div>
-      <div class="touch-zone aim-zone" id="aimZone"><i id="aimStick"></i></div>
-      <button id="dashButton" type="button">DASH</button>
+  <section class="hud" aria-label="플레이 상태">
+    <div class="hud-left">
+      <small>OPERATIVE // J-01</small>
+      <div class="bar"><span>VITAL</span><i><b id="healthBar"></b></i><strong id="health">100</strong></div>
+      <div class="bar armor"><span>ARMOR</span><i><b id="armorBar"></b></i><strong id="armor">50</strong></div>
     </div>
-  </main>
+    <div class="hud-center"><small>MISSION TIME</small><b id="timer">01:30</b><span id="objective">REACH THE DATA CORE</span></div>
+    <div class="hud-right"><small>SIDEARM // K-12</small><strong><b id="ammo">12</b><i>/</i><span id="reserve">60</span></strong><em id="reloadState">SEMI AUTO</em></div>
+    <div class="score"><span>HOSTILES</span><b id="kills">00 / 10</b></div>
+    <div class="compass"><i></i><span id="compass">N 000°</span><i></i></div>
+  </section>
 
+  <div class="crosshair" id="crosshair"><i></i><i></i><span></span></div>
+  <div class="hitmarker" id="hitmarker">×</div>
+  <div class="weapon" id="weapon" aria-hidden="true"><div class="hand hand-left"></div><div class="hand hand-right"></div><div class="pistol"><i></i><b></b><span></span></div><div class="muzzle"></div></div>
+
+  <section class="overlay visible" id="startScreen">
+    <div class="briefing">
+      <p>FIRST PERSON PROTOCOL // 01</p><h1>SECTOR<br><span>NINE</span></h1>
+      <div class="brief-grid"><div><small>MISSION</small><b>데이터 코어 회수</b></div><div><small>LOCATION</small><b>CALIGO / BLOCK 09</b></div><div><small>THREAT</small><b>HOSTILE</b></div></div>
+      <p class="intro">폐쇄된 섹터에 침투해 적 요원 10명을 제압하고 데이터 코어에 도달하라.<br>탄약과 방어구를 관리하며 90초 안에 임무를 완수해야 한다.</p>
+      <div class="controls"><span><b>W A S D</b>이동</span><span><b>MOUSE</b>시점 · 사격</span><span><b>R</b>재장전</span><span><b>SHIFT</b>달리기</span><span><b>ESC</b>일시정지</span></div>
+      <button id="start" type="button">ENTER SECTOR <i>→</i></button><small class="notice">버튼을 누르면 마우스 포인터가 게임에 고정됩니다.</small>
+    </div>
+  </section>
+
+  <section class="overlay" id="pauseScreen"><div class="dialog"><p>SYSTEM INTERRUPT</p><h2>PAUSED</h2><button id="resume" type="button">RESUME <i>→</i></button><a href="../index.html">ABORT MISSION</a></div></section>
+  <section class="overlay" id="resultScreen"><div class="dialog result"><p id="resultLabel">MISSION COMPLETE</p><h2 id="resultTitle">CORE<br><span>SECURED</span></h2><div class="results"><div><small>HOSTILES</small><b id="finalKills">10</b></div><div><small>ACCURACY</small><b id="accuracy">00%</b></div><div><small>TIME</small><b id="finalTime">00:00</b></div></div><button id="restart" type="button">REDEPLOY <i>↻</i></button><a href="../index.html">RETURN TO PORTFOLIO</a></div></section>
+
+  <div class="mobile-look" id="lookZone"></div>
+  <div class="mobile-pad" id="movePad"><i id="moveStick"></i></div>
+  <button class="mobile-fire" id="mobileFire" type="button">FIRE</button><button class="mobile-reload" id="mobileReload" type="button">R</button>
   <script src="../assets/js/game.js"></script>
 </body>
 </html>

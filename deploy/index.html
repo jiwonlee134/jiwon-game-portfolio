@@ -39,11 +39,11 @@
 
     <section class="project section" id="project">
       <div class="project-head"><div class="section-label light reveal"><b>02</b><span>FEATURED PROJECT</span></div><p class="project-year reveal">2026<br>PERSONAL PROJECT</p></div>
-      <div class="project-title reveal"><p>Browser Action Game</p><h2>NEON<br><span>REQUIEM</span></h2></div>
+      <div class="project-title reveal"><p>Browser First-Person Game</p><h2>SECTOR<br><span>NINE</span></h2></div>
       <div class="project-visual reveal"><img src="assets/images/neon-requiem-hero.png" alt="비 내리는 네온 도시를 바라보는 게임 주인공"><div class="visual-index">PROJECT / 001</div><a class="round-play" href="pages/game.html" aria-label="NEON REQUIEM 게임 플레이"><span>PLAY<br>NOW</span><i>↗</i></a></div>
       <div class="project-summary reveal">
-        <p class="lead">90초 동안 추적 드론을 제거하고 자정까지 살아남는 브라우저 액션 게임.</p>
-        <p>누구나 바로 이해할 수 있는 이동과 조준, 점수 시스템을 중심으로 짧지만 반복해서 도전하고 싶은 플레이 흐름을 설계했습니다.</p>
+        <p class="lead">폐쇄된 네온 구역에 침투해 적 요원을 제압하고 데이터 코어를 회수하는 1인칭 슈팅 게임.</p>
+        <p>별도의 게임 엔진 없이 Canvas와 JavaScript로 원근 공간을 구현했습니다. 90초 동안 탄약과 방어구를 관리하며 목표 지점까지 이동해야 합니다.</p>
         <div class="tags"><span>GAME DESIGN</span><span>INTERACTION</span><span>DEBUGGING</span><span>WEB GAME</span></div>
       </div>
       <dl class="project-facts reveal" aria-label="프로젝트 정보">
@@ -56,12 +56,12 @@
       <div class="feature-block reveal">
         <div class="feature-intro"><p>CORE FEATURES</p><h3>직접 구현한<br>핵심 기능</h3></div>
         <div class="feature-grid">
-          <article><b>01</b><span>HUMAN CHARACTER</span><h4>사람 캐릭터</h4><p>머리, 몸통, 팔과 다리를 구분하고 이동 시 보행 애니메이션을 적용했습니다.</p></article>
+          <article><b>01</b><span>FIRST PERSON VIEW</span><h4>1인칭 공간</h4><p>광선 투사 방식으로 벽의 거리와 높이를 계산해 실시간 원근 공간을 구현했습니다.</p></article>
           <article><b>02</b><span>TACTICAL SHOOTING</span><h4>전술 사격</h4><p>12발 탄창, 재장전, 이동과 연사에 따른 반동 및 명중 오차를 구현했습니다.</p></article>
-          <article><b>03</b><span>ENEMY BEHAVIOR</span><h4>적 추적 로직</h4><p>플레이어 추적과 적 사이의 분리 이동을 조합해 겹침을 줄였습니다.</p></article>
+          <article><b>03</b><span>HOSTILE AI</span><h4>적 요원 AI</h4><p>시야와 벽을 확인한 뒤 플레이어를 추적하고 거리별 명중률로 공격합니다.</p></article>
           <article><b>04</b><span>NOIR AUDIO</span><h4>절차형 사운드</h4><p>Web Audio API로 느와르 BGM과 총성, 피격 및 재장전 효과음을 생성합니다.</p></article>
-          <article><b>05</b><span>GAME SYSTEM</span><h4>점수와 콤보</h4><p>적 유형과 연속 처치에 따라 점수가 달라지는 반복 플레이 구조를 만들었습니다.</p></article>
-          <article><b>06</b><span>RESPONSIVE CONTROL</span><h4>반응형 조작</h4><p>키보드와 마우스뿐 아니라 모바일 듀얼 터치 조작도 지원합니다.</p></article>
+          <article><b>05</b><span>MISSION SYSTEM</span><h4>침투 임무</h4><p>적 10명을 제압한 뒤 미로 끝의 데이터 코어에 도달해야 완료됩니다.</p></article>
+          <article><b>06</b><span>POINTER LOCK</span><h4>FPS 조작</h4><p>WASD 이동, 마우스 시점 회전, 사격, 재장전과 달리기를 지원합니다.</p></article>
         </div>
       </div>
       <div class="project-links reveal"><a href="pages/game.html">LIVE GAME <i>↗</i></a><a href="https://github.com/jiwonlee134/jiwon-game-portfolio" target="_blank" rel="noopener">SOURCE CODE <i>↗</i></a></div>
@@ -98,21 +98,21 @@
       </div>
       <div class="case-list">
         <article class="case reveal">
-          <div class="case-no">CASE 01</div><h3>적 캐릭터가<br>한곳에 겹쳤다.</h3>
-          <dl><div><dt>PROBLEM</dt><dd>모든 적이 플레이어만 향해 이동하면서 같은 좌표에 겹쳐 전투 상황이 잘 보이지 않았습니다.</dd></div><div><dt>CAUSE</dt><dd>적과 적 사이의 거리 판단 없이 동일한 추적 방향만 계산하고 있었습니다.</dd></div><div><dt>SOLUTION</dt><dd>가까운 적끼리 서로 밀어내는 분리 벡터를 추적 방향에 더했습니다.</dd></div><div><dt>RESULT</dt><dd>적이 무리를 유지하면서도 자연스럽게 퍼져 전투의 가독성이 좋아졌습니다.</dd></div></dl>
+          <div class="case-no">CASE 01</div><h3>평면 지도를<br>입체 공간으로.</h3>
+          <dl><div><dt>PROBLEM</dt><dd>2차원 좌표만으로는 플레이어가 통로 안을 걷는 1인칭 경험을 만들 수 없었습니다.</dd></div><div><dt>CAUSE</dt><dd>벽까지의 거리와 시야 각도에 따른 원근 표현이 없었습니다.</dd></div><div><dt>SOLUTION</dt><dd>화면의 세로줄마다 광선을 발사해 가장 가까운 벽의 거리와 높이를 계산했습니다.</dd></div><div><dt>RESULT</dt><dd>Canvas 하나만으로 이동 가능한 3차원 형태의 미로 공간을 구현했습니다.</dd></div></dl>
         </article>
         <article class="case reveal">
-          <div class="case-no">CASE 02</div><h3>플레이어가<br>기계처럼 보였다.</h3>
-          <dl><div><dt>PROBLEM</dt><dd>삼각형 형태의 플레이어는 조작 대상이 사람이라는 인상을 주지 못했습니다.</dd></div><div><dt>CAUSE</dt><dd>방향과 위치 전달에만 집중해 인체를 구분할 시각 정보가 부족했습니다.</dd></div><div><dt>SOLUTION</dt><dd>머리, 머리카락, 코트, 양팔, 손, 다리와 권총을 분리해 그렸습니다.</dd></div><div><dt>RESULT</dt><dd>위에서 보는 작은 화면에서도 사람과 무기의 방향을 구분할 수 있게 됐습니다.</dd></div></dl>
+          <div class="case-no">CASE 02</div><h3>마우스 움직임을<br>시선으로 바꿨다.</h3>
+          <dl><div><dt>PROBLEM</dt><dd>화면 위 커서를 움직이는 방식은 1인칭 시점의 몰입감을 만들지 못했습니다.</dd></div><div><dt>CAUSE</dt><dd>마우스 위치와 카메라 회전값이 서로 연결되지 않았습니다.</dd></div><div><dt>SOLUTION</dt><dd>Pointer Lock API의 이동량을 카메라 각도로 변환하고 화면 중앙에 조준점을 고정했습니다.</dd></div><div><dt>RESULT</dt><dd>마우스를 움직이는 방향대로 즉시 주변을 살필 수 있는 FPS 조작이 완성됐습니다.</dd></div></dl>
         </article>
         <article class="case reveal">
           <div class="case-no">CASE 03</div><h3>사격의 무게감이<br>부족했다.</h3>
-          <dl><div><dt>PROBLEM</dt><dd>탄약 제한 없이 같은 속도로 발사되어 사격이 단순한 클릭처럼 느껴졌습니다.</dd></div><div><dt>CAUSE</dt><dd>발사 성공 여부만 구현되어 총기의 물리적 피드백이 없었습니다.</dd></div><div><dt>SOLUTION</dt><dd>탄창, 재장전, 반동, 탄피, 궤적, 화면 흔들림과 다층 총성을 추가했습니다.</dd></div><div><dt>RESULT</dt><dd>사격과 이동 사이에 선택이 생기고 전투의 긴장감이 강화됐습니다.</dd></div></dl>
+          <dl><div><dt>PROBLEM</dt><dd>화면 중앙에서 판정만 발생하면 총을 쏘는 동작과 결과가 분리되어 보였습니다.</dd></div><div><dt>CAUSE</dt><dd>무기 모델, 반동, 총구 화염과 음향 피드백이 없었습니다.</dd></div><div><dt>SOLUTION</dt><dd>1인칭 손과 권총, 탄창, 재장전, 반동, 화면 흔들림과 다층 총성을 추가했습니다.</dd></div><div><dt>RESULT</dt><dd>발사 입력과 시각·청각 반응이 동시에 연결되어 전투의 긴장감이 강화됐습니다.</dd></div></dl>
         </article>
       </div>
       <div class="ai-comparison reveal">
         <div class="ai-title"><span>AI × DEVELOPER</span><h3>AI의 제안을<br>결과로 바꾸는 방법</h3></div>
-        <div class="compare-flow"><div><b>01</b><small>REQUEST</small><strong>“사람처럼 보이는 플레이어가 필요해.”</strong><p>원하는 변화와 유지해야 할 조작 방식을 자연어로 설명했습니다.</p></div><i>→</i><div><b>02</b><small>AI DRAFT</small><strong>인체를 구성하는 Canvas 도형</strong><p>머리와 몸통, 팔과 다리를 나눈 코드 초안을 만들었습니다.</p></div><i>→</i><div class="decision"><b>03</b><small>MY DECISION</small><strong>시점과 크기에 맞춰 직접 조정</strong><p>총 방향, 실루엣, 걷는 속도와 색 대비를 실제 게임 화면에서 반복 검증했습니다.</p></div></div>
+        <div class="compare-flow"><div><b>01</b><small>REQUEST</small><strong>“기존 게임을 완전히 다른 1인칭 게임으로.”</strong><p>유지할 느와르 분위기와 새롭게 필요한 FPS 조작을 구체적으로 설명했습니다.</p></div><i>→</i><div><b>02</b><small>AI DRAFT</small><strong>광선 투사 기반 게임 엔진</strong><p>거리 계산, 벽 렌더링과 마우스 카메라의 기본 구조를 만들었습니다.</p></div><i>→</i><div class="decision"><b>03</b><small>MY DECISION</small><strong>플레이 가능한 임무로 확장</strong><p>충돌 지도, 적 시야, 탄약, 방어구, 목표 지점과 피드백을 실제 플레이하며 조정했습니다.</p></div></div>
       </div>
     </section>
 
